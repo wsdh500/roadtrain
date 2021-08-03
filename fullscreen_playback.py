@@ -34,6 +34,7 @@ if full_screen:
         cv2.setWindowProperty(video_window,cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
 else:
         cv2.namedWindow(video_window,cv2.WINDOW_AUTOSIZE)
+        cv2.moveWindow(video_window,0,0)
 
 # MAIN LOOP
 while(cap.isOpened()):
