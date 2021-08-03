@@ -1,3 +1,22 @@
+
+# REALSENSE
+
+librealsense*
+*.bag
+
+# MOVIE FILE FORMATS
+
+*.avi
+*.mp4
+*.mov
+
+# EMACS
+
+\#*\#
+*~
+
+### EVERYTHING BELOW HERE IS GITHUB PYTHON BOILER PLATE
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
