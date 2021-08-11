@@ -1,20 +1,23 @@
 
 import cv2
-
 from display import n_displays , x_offset , y_offset
-
 from sys import exit
 
+import time
 
 n = n_displays()
 
 
 def create_offset():
     offset = 0
+    last_event = 0
 
     def increment():
         nonlocal offset
-        offset += n
+        nonlocal last_event
+        if time.time() - last_event > 0.3:
+            offset += n
+            last_event = time.time()
 
     def current():
         nonlocal offset
