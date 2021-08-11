@@ -40,7 +40,7 @@ def open_stream(stream):
     cap = cv2.VideoCapture(stream)
     if(cap.isOpened() == False):
         print('Cannot open stream',stream)
-        sys.exit()
+        exit()
     return cap
 
 def open_window(window_name,x_offset,y_offset,full_screen):
