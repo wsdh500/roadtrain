@@ -5,11 +5,36 @@ from display import n_displays , x_offset , y_offset
 
 from sys import exit
 
+
+n = n_displays()
+
+
+def create_offset():
+    offset = 0
+
+    def increment():
+        nonlocal offset
+        offset += n
+
+    def current():
+        nonlocal offset
+        return offset
+
+    return increment , current
+
+increment_offset , current_offset = create_offset()
+
+def get_switcher():
+    return increment_offset
+
+
 QUIT_KEY = ord('q')
+NEXT_KEY = ord('n')
 
 caps = []
 windows = []
-n = n_displays()
+
+INITIALISED = False
 
 def open_stream(stream):
     cap = cv2.VideoCapture(stream)
@@ -32,7 +57,7 @@ def setup_window(path,window_name,x_offset,y_offset,full_screen):
     video_window = open_window(window_name,x_offset,y_offset,full_screen)
     return cap , video_window
 
-def video_playback(paths,fps,full_screen):
+def video_setup(paths,full_screen):
     for path in paths:
         cap = open_stream(path)
         caps.append(cap)
@@ -40,21 +65,36 @@ def video_playback(paths,fps,full_screen):
         name = "Display:"+str(i)
         window = open_window(name,x_offset(i),y_offset(i),full_screen)
         windows.append(window)
+    INITIALISED = True
+
+def video_playback(paths,fps,full_screen):
+    video_setup(paths,full_screen)
     try:
         RUNNING = True
         while RUNNING:
+            x = current_offset()
             for i in range(n):
-                cap = caps[i % len(caps)]
+                cap = caps[(x + i) % len(caps)]
                 window = windows[i]
-                ret , frame = cap.read()
-                if ret == True:
+                RUNNING , frame = cap.read()
+                if RUNNING:
                     cv2.imshow(window,frame)
                     if cv2.getWindowProperty(window,cv2.WND_PROP_VISIBLE) < 1:
                         RUNNING = False
-                else:
-                    RUNNING = False
-            if cv2.waitKey(fps) & 0xff == QUIT_KEY:
+
+            if n < len(caps):
+                diff = len(caps) - n
+                y = x + n
+                for d in range(diff):
+                    cap = caps[(y + d) % len(caps)]
+                    RUNNING = cap.grab()
+
+            key = cv2.waitKey(fps) & 0xff
+            if key == QUIT_KEY:
                 RUNNING = False
+            elif key == NEXT_KEY:
+                increment_offset()
+
     finally:
         for cap in caps:
             cap.release()
