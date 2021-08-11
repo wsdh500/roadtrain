@@ -32,22 +32,23 @@ def video_playback(paths,fps,full_screen):
             return
         caps.append(cap)
         windows.append(window)
-    RUNNING = True
-    while RUNNING:
-        for i in range(n):
-            cap = caps[i]
-            window = windows[i]
-            ret , frame = cap.read()
-            if ret == True:
-                cv2.imshow(window,frame)
-                if cv2.waitKey(fps) & 0xff == QUIT_KEY:
+    try:
+        RUNNING = True
+        while RUNNING:
+            for i in range(n):
+                cap = caps[i]
+                window = windows[i]
+                ret , frame = cap.read()
+                if ret == True:
+                    cv2.imshow(window,frame)
+                    if cv2.getWindowProperty(window,cv2.WND_PROP_VISIBLE) < 1:
+                        RUNNING = False
+                else:
                     RUNNING = False
-                if cv2.getWindowProperty(window,cv2.WND_PROP_VISIBLE) < 1:
-                    RUNNING = False
-            else:
+            if cv2.waitKey(fps) & 0xff == QUIT_KEY:
                 RUNNING = False
-
-    for cap in caps:
-        cap.release()
-    for window in windows:
-        cv2.destroyWindow(window)
+    finally:
+        for cap in caps:
+            cap.release()
+        for window in windows:
+            cv2.destroyWindow(window)
