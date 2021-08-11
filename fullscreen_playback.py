@@ -7,7 +7,8 @@
 
 from video import video_playback
 
-videos = ('munching-squares_1920x1080.mp4',)
+dir = 'videos/test_patterns/double/'
+videos = (dir+'double_display_0.mp4',dir+'double_display_1.mp4',)
 fps = 30
 fullscreen = True
 video_playback(videos,fps,fullscreen)
