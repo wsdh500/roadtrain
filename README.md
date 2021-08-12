@@ -18,7 +18,7 @@ In order to play back video, pip3 will need to be installed before installing th
 
 Installing the OpenCV bindings will also install Numpy.
 
-Finally, download *munching-squares_1920x1080.mp4* from the shared Google Drive folder into the working directory.
+Finally, download the videos folder from the shared Google Drive folder into the working directory.
 
 You should now be able to run the demo.
 
