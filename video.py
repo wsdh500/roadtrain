@@ -42,7 +42,7 @@ INITIALISED = False
 def open_stream(stream):
     cap = cv2.VideoCapture(stream)
     if(cap.isOpened() == False):
-        print('Cannot open stream',stream)
+        print('Cannot open stream',str(stream))
         exit()
     return cap
 
