@@ -18,8 +18,10 @@ In order to play back video, pip3 will need to be installed before installing th
 
 Installing the OpenCV bindings will also install Numpy.
 
-Finally, download the videos folder from the shared Google Drive folder into the working directory.
+Finally, download the *videos* folder from the shared Google Drive folder into the working directory.
 
 You should now be able to run the demo.
 
 `$ python3 fullscreen_playback.py`
+
+Pressing 'n' will switch videos, and pressing 'q' will quit the demo.
