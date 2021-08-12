@@ -57,6 +57,7 @@ if len(displays) == 1:
 #else : ??
 
 def n_displays():
+    '''Get the number of available displays'''
     return len(display_result)
 
 def physical_width(i):
@@ -72,7 +73,7 @@ def x_offset(i):
     return int(display_result[i][3])
 
 def y_offset(i):
-    '''Get yoffset of display i'''
+    '''Get y-offset of display i'''
     return int(display_result[i][4])
 
 def logical_width():
