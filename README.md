@@ -58,4 +58,4 @@ There is a hack that can allow VLC to single step frame-by-frame and syncronise 
 way, however it was discovered too late to be implemented at this time.
 
 General support of the system can be obtained by emailing
-[Sam Hart](wsdh500@york.ac.uk).
+[Sam Hart](mailto:wsdh500@york.ac.uk).
