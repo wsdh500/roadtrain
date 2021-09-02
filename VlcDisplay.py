@@ -1,5 +1,17 @@
 
+"""
+Display, and playback of media using *VLC*.
+-------------------------------------------
 
+VlcDisplay class is responsible for :
+
+* creating a *VLC* player instance,
+* creating a window for that instance,
+* moving the window to the correct offset for the correct display,
+* making the window fullscreen, if required,
+* control of playback.
+
+"""
 
 import vlc
 from Xlib import X, display
@@ -13,14 +25,9 @@ class VlcDisplay:
     :param height: The height of the window to create.
     :param x_offset: The displacement of the window on the x-axis.
     :param y_offset: The displacement of the window on the y-axis.
-    :param fullscreen: Whether to make this window fullscreen.
+    :param fullscreen: boolean indicating whether to make this window fullscreen.
 
-    VlcDisplay class is responsible for :
 
-    * creating a VLC player instance,
-    * creating a window for that instance,
-    * moving the window to the correct offset for the correct display,
-    * making the window fullscreen, if required.
     '''
 
     def __init__(self,name,width,height,x_offset,y_offset,fullscreen):
@@ -139,7 +146,9 @@ class VlcDisplay:
 
     def release(self):
         '''
-        Essential cleanup, object cannot be used afterwards.
+        Essential cleanup.
+
+        .. warning:: Object cannot be used afterwards.
         '''
         if self.player != None and self.window != None:
             if self.player.is_playing():

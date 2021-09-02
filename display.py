@@ -1,11 +1,12 @@
 
 """
-Code for obtaining the display geometry from shell, and library, calls.
+Obtain the display geometry from shell, and library, calls.
+-----------------------------------------------------------
 
 In theory, there can be all sorts of weird and wonderful X11 setups,
 no sense worrying about them unless they crop up in practice.
 
-see: xrandr(1)
+see: `xrandr(1) <https://www.x.org/releases/X11R7.5/doc/man/man1/xrandr.1.html>`_
 """
 
 # for running shell commands and parsing the results

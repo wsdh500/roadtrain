@@ -1,10 +1,14 @@
 
-
 """
+Multicast target.
+-----------------
 
-* Run the VlcDisplay code as configured,
-* setup as a multicast target,
-* accept input via GPIO which controls the depth camera window and playlist position.
+Runs as a script on any target device attached to one or more displays.
+Playback is controlled by the multicast source, *VlcSource*.
+
+* Runs the *VlcDisplay* code as configured,
+* sets up as a multicast target, accepting requests from the multicast source,
+* accepts input via GPIO which controls the depth camera window and playlist position.
 
 """
 

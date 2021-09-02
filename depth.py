@@ -1,6 +1,7 @@
 
 """
-Code for handling the Intel RealSense Depth Camera. 
+Code for handling the Intel RealSense Depth Camera.
+---------------------------------------------------
 """
 
 import cv2
@@ -20,6 +21,7 @@ rs_width = 1280
 rs_height = 720
 rs_format = rs.format.z16       # fixed for depth
 rs_fps = 30
+#: The current configuration. Use `rs-enumerate-devices` for available settings.
 rs_args = (rs_alpha,rs_width,rs_height,rs_format,rs_fps,)
 
 

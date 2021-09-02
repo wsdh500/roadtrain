@@ -1,14 +1,22 @@
 
 """
+Multicasting source.
+++++++++++++++++++++
+
 The source takes commands as arguments and sends them to the targets.
+In practice, it establishes the multicast channel over which it sends, and relays, messages.
 
-In practice, it establishes the multicast channel
-over which it sends, and relays, messages.
+When executed from the command line, this file functions as a basic "shell" for the source.
+Currently available commands :
 
-When executed from a shell, this file functions as a basic "shell"
- for the source.
+- **ack** : Request acknowledgement from all targets in the multicast group.
+- **play** : Request playback to commence on all targets in the multicast group.
+- **next** : Request playback of the next item in the playlist.
+- **depth** : Request toggling of the depth camera window visibility.
+- **stop** : Request that playback ceases.
+- **quit** : Request all targets in the multicast group to quit. Quits.
 
-Could be improved by accepting piped commands on STDIN so it can be scripted.
+Could be improved by accepting piped commands on *STDIN* so it can be scripted.
 """
 
 import socket
@@ -25,7 +33,7 @@ import sys
 
 class VlcSource:
     '''
-    Source for Vlc*Target multicast instances.
+    Multicast source for controlling *VlcGpioTarget* instances.
     '''
 
     def __init__(self):

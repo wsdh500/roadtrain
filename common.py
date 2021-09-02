@@ -1,10 +1,13 @@
 """
+Configure available displays.
+-----------------------------
+
 Code to automatically setup the displays from the provided configuration.
 """
 
 ## DISPLAYS
 
-#: The physical displays to use, from leftmost-to-rightmost.
+#: The physical displays to use, indexed from 0 indicating leftmost-to-rightmost.
 physical_displays = [0,1]
 #: The playlist to use for the relative entry in physical_displays.
 logical_displays = [0,1,2]
@@ -35,9 +38,9 @@ from VlcDisplay import VlcDisplay
 
 def setup_displays():
     '''
-    Automatically setup, and configure, each VlcDisplay.
+    Automatically setup, and configure, each *VlcDisplay*.
 
-    :return: list of VlcDisplay objects.
+    :return: list of *VlcDisplay* objects.
     '''
     players = []
 

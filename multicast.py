@@ -1,5 +1,6 @@
 """
-Defaults, constants, and common functionality for multicasting.
+Defaults, constants, and functionality, for multicasting.
+---------------------------------------------------------------
 """
 
 import socket
