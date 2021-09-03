@@ -225,7 +225,7 @@ Install the standard *GPIO* libraries
 
 Add your user to the *dialout* group
 
-``# sudo usermod -a -G dialout <username>``
+``# usermod -a -G dialout <username>``
 
 You will need to reboot, or possibly just logout, for the change to take effect.
 
