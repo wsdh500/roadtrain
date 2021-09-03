@@ -58,6 +58,3 @@ There is a hack that can allow VLC to single step frame-by-frame and syncronise 
 way, however it was discovered too late to be implemented at this time.
 
 Further information can be found by reading [the documentation](https://roadtrain.readthedocs.io/).
-
-General support of the system can be obtained by emailing
-[Sam Hart](mailto:wsdh500@york.ac.uk).
