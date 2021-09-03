@@ -13,8 +13,8 @@ The following are recommended :
 - protobuf-compiler
 
 Full instructions on how to create a Raspberry Pi 4 Model B installation from scratch
-are available from the AAIP Roadtrain shared Google Drive.
-A flashable disk image should be available for download shortly.
+are available in [the documentation](https://roadtrain.readthedocs.io/).
+A pre-installed pre-configured flashable disk image is available from the AAIP shared Google Drive.
 
 The model used for inter-device communication is multicasting.
 The terminology adopted by this project, at this time, is of *sources* and *targets*.
