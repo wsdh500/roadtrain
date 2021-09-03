@@ -6,6 +6,9 @@
 AAIP Roadtrain Project documentation.
 ==================================================
 
+.. image::
+   images/triple-display_sm.png
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
