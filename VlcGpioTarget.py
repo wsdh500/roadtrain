@@ -17,7 +17,6 @@ import sys
 from gpio import init_gpio , stop_gpio
 
 import depth
-import pyrealsense2.pyrealsense2 as rs
 
 from multicast import setup_target , send_message , padding
 from multicast import quit_command , play_command , stop_command
