@@ -12,18 +12,21 @@ import time
 import multiprocessing
 
 
+#: The temperature at which to warn about the projector temperature.
 proj_warn_temp = 40
+#: The temperature at which to warn about the Asic temperature.
 asic_warn_temp = 45
 
+#: [OpenCV Colour Mappings](https://docs.opencv.org/4.5.0/d3/d50/group__imgproc__colormap.html)
+colour_map = cv2.COLORMAP_HOT
+
 rs_alpha = 0.1
-# use `rs-enumerate-devices` for available settings
 rs_width = 1280
 rs_height = 720
 rs_format = rs.format.z16       # fixed for depth
 rs_fps = 30
 #: The current configuration. Use `rs-enumerate-devices` for available settings.
 rs_args = (rs_alpha,rs_width,rs_height,rs_format,rs_fps,)
-
 
 def depthcam_stream(alpha,width,height,dc_format,fps):
     '''
@@ -59,8 +62,8 @@ def depthcam_stream(alpha,width,height,dc_format,fps):
                 print('Not depth frame, skipping ...')
                 continue
             depth_image = np.asanyarray(depth_frame.get_data())
-            converted = cv2.convertScaleAbs(depth_image,alpha=alpha)
-            depth_colormap = cv2.applyColorMap(converted,cv2.COLORMAP_JET)
+            converted = cv2.convertScaleAbs(depth_image,alpha=alpha) # matrix of normalised bytes in range [0,255]
+            depth_colormap = cv2.applyColorMap(converted,colour_map) # matrix of 3 byte arrays representing RGB.
             cv2.imshow(rs_window,depth_colormap)
             cv2.setWindowProperty(rs_window,cv2.WND_PROP_TOPMOST,1)
             cv2.waitKey(1)
