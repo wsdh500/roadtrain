@@ -28,7 +28,7 @@ from common import setup_displays
 if __name__ == "__main__":
 
     ## DEPTH
-    start_depth_cam , stop_depth_cam = depth.create_event_handlers(depth.rs_args)
+    start_depth_cam , stop_depth_cam = depth.create_event_handlers(depth.combined_stream,(depth.default_map,))
 
 
     ## DISPLAYS
