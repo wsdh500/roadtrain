@@ -34,6 +34,21 @@ You will also need to regenerate the OpenSSHd keys.
 
 ``# systemctl start ssh``
 
+To run the *roadtrain* software as a service, you will need to :
+
+``# systemctl stop lightdm``
+
+``# systemctl start roadtrain``
+
+To enable the *roadtrain* service to start on system boot :
+
+``# systemctl disable lightdm``
+
+``# systemctl enable roadtrain``
+
+``# shutdown -r now``
+
+All files for the service are stored under ``/usr/share/aaip``.
 
 
 Operating System Installation
