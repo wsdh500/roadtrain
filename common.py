@@ -17,8 +17,7 @@ fullscreen = True
 
 ## PLAYLISTS
 
-videos_dir = 'roadtrain/test_patterns/'
-videos_dir = '/home/sam/Videos/' + videos_dir
+videos_dir = '/usr/share/aaip/roadtrain/test_patterns/'
 
 playlist_0 = [videos_dir + 'triple_display_0.mp4',
               videos_dir + 'inverted_triple_display_0.mp4']
