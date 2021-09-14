@@ -97,16 +97,17 @@ def depth_stream(colour_map,scale_factor=0.1,width=1280,height=720,fps=30):
         cv2.destroyWindow(rs_window)
     return
 
-def combined_stream(colour_map,scale_factor=0.1,alpha=0.6,width=640,height=480,fps=60):
+def combined_stream(colour_map,depth_scale=0.1,alpha=0.6,width=640,height=360,fps=60,image_scale=2):
     '''
     .. _combined_stream:
 
     :param color_map: OpenCV colour mapping.
-    :param scale_factor: Depth scaling factor to use.
+    :param depth_scale: Scaling factor to use on the depth data.
     :param alpha: Transparancy value to use when blending streams.
     :param width: The width, in pixels, of the combined streams to use.
     :param height: The height, in pixels, of the combined streams to use.
     :param fps: Average frames-per-second to capture both depth camera streams.
+    :param image_scale: Scaling factor for the window.
 
     Creates a window and displays a blend of the video and depth streams within it.
 
@@ -151,13 +152,17 @@ def combined_stream(colour_map,scale_factor=0.1,alpha=0.6,width=640,height=480,f
 
             depth_frame.keep() # ??
             depth = np.asanyarray(depth_frame.get_data())
-            scaled = cv2.convertScaleAbs(depth,alpha=scale_factor) # matrix of normalised bytes in range [0,255]
+            scaled = cv2.convertScaleAbs(depth,alpha=depth_scale) # matrix of normalised bytes in range [0,255]
             colormapped = cv2.applyColorMap(scaled,colour_map) # matrix of 3 byte arrays representing RGB.
 
             color_frame.keep() # ???
             image = np.asanyarray(color_frame.get_data())
 
             blended = cv2.addWeighted(colormapped,alpha,image,1.0-alpha,0.0)
+            if image_scale != 1:
+                scale_width = int(width * image_scale)
+                scale_height = int(height * image_scale)
+                blended = cv2.resize(blended,(scale_width,scale_height))
 
             cv2.imshow(rs_window,blended)
             cv2.setWindowProperty(rs_window,cv2.WND_PROP_TOPMOST,1)
