@@ -37,6 +37,10 @@ class VlcDisplay:
         and display.
         '''
         self.name = name
+        self.width = width
+        self.height = height
+        self.x_offset = x_offset
+        self.y_offset = y_offset
 
         # VLC
         self.instance = vlc.Instance()
@@ -65,11 +69,12 @@ class VlcDisplay:
         self.root.warp_pointer(width,height)
         self.display.sync()
 
-    def set_mrl(self,mrl):
-        '''
-        :param mrl: The MRL of the media for the player to play.
-        '''
-        self.player.set_mrl(mrl)
+    def set_geometry(self,width,height,x_offset,y_offset):
+        configuration = str(width) + 'x' + str(height) + '+' + str(x_offset) + '+' + str(y_offset)
+        self.media_player.video_set_crop_geometry(configuration)
+
+    def set_geometry(self,configuration):
+        self.media_player.video_set_crop_geometry(configuration)
 
     def set_playlist(self,playlist):
         '''
