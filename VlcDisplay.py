@@ -70,10 +70,18 @@ class VlcDisplay:
         self.display.sync()
 
     def set_geometry(self,width,height,x_offset,y_offset):
-        configuration = str(width) + 'x' + str(height) + '+' + str(x_offset) + '+' + str(y_offset)
-        self.media_player.video_set_crop_geometry(configuration)
+        '''
+        :param width: Set the width of the total cropped section.
+        :param height: Set the height of the total cropped section.
+        :param x_offset: Set the horizontal offset into the cropped section.
+        :param y_offset: Set the vertical offset into the cropped section.
 
-    def set_geometry(self,configuration):
+        Sets the geometry of the cropped section of the input video.
+
+        The width and height parameters set the total cropped section that is used,
+        however, adjusting the horizontal and vertical offsets changes the size of the displayed section.
+        '''
+        configuration = str(width) + 'x' + str(height) + '+' + str(x_offset) + '+' + str(y_offset)
         self.media_player.video_set_crop_geometry(configuration)
 
     def set_playlist(self,playlist):
@@ -145,9 +153,12 @@ class VlcDisplay:
         '''
         :return: boolean indicating whether the media is playing.
         '''
-        position = self.media_player.get_position()
-        # should check for loop
-        return 0 <= position and position < 0.999
+        playing = self.media_player.is_playing()
+        if self.local_files:
+            position = self.media_player.get_position()
+            # should check for loop
+            playing = 0 <= position and position < 0.999
+        return playing
 
     def release(self):
         '''
@@ -167,7 +178,7 @@ class VlcDisplay:
 
 
 from display import n_displays , x_offset , y_offset , physical_width , physical_height
-from common import physical_displays , logical_displays , nplaylists , fullscreen
+from common import physical_displays , logical_displays , nplaylists , fullscreen , geometries , use_geometry
 
 def setup_displays():
     '''
@@ -191,5 +202,8 @@ def setup_displays():
         player = VlcDisplay(name,width,height,xoffset,yoffset,fullscreen)
         players.append(player)
         player.set_playlist(playlist)
+        if use_geometry:
+            w , h , xo , yo = geometries[k]
+            player.set_geometry(w,h,xo,yo)
 
     return players
