@@ -18,6 +18,9 @@ from Xlib import X, display
 import time
 from os.path import exists
 
+import display
+import common
+
 class VlcDisplay:
     '''
     :param name: The name of the window.
@@ -177,8 +180,6 @@ class VlcDisplay:
 
 
 
-from display import n_displays , x_offset , y_offset , physical_width , physical_height
-from common import physical_displays , logical_displays , nplaylists , fullscreen , geometries , use_geometry
 
 def setup_displays():
     '''
@@ -188,22 +189,23 @@ def setup_displays():
     '''
     players = []
 
-    n = n_displays()
-    j = min(n,len(physical_displays))
+    n = display.n_displays()
+    j = min(n,len(common.physical_displays))
     for i in range(j):
-        k = physical_displays[i]
-        playlist = nplaylists[logical_displays[k]]
+        k = common.physical_displays[i]
+        playlist = common.nplaylists[common.logical_displays[k]]
         k %= n
         name = 'Display-'+str(k)
-        width = physical_width(k)
-        height = physical_height(k)
-        xoffset = x_offset(k)
-        yoffset = y_offset(k)
+        width = display.physical_width(k)
+        height = display.physical_height(k)
+        xoffset = display.x_offset(k)
+        yoffset = display.y_offset(k)
+        fullscreen = common.fullscreen
         player = VlcDisplay(name,width,height,xoffset,yoffset,fullscreen)
         players.append(player)
         player.set_playlist(playlist)
-        if use_geometry:
-            w , h , xo , yo = geometries[k]
+        if common.use_geometry:
+            w , h , xo , yo = common.geometries[k]
             player.set_geometry(w,h,xo,yo)
 
     return players
