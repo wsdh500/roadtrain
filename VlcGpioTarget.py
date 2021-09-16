@@ -22,7 +22,7 @@ from multicast import setup_target , send_message , padding
 from multicast import quit_command , play_command , stop_command
 from multicast import ack_command , depth_command , next_command
 
-from common import setup_displays
+from VlcDisplay import setup_displays
 
 
 if __name__ == "__main__":

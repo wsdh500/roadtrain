@@ -163,3 +163,33 @@ class VlcDisplay:
             self.player.release()
             self.player = None
             self.window = None
+
+
+
+from display import n_displays , x_offset , y_offset , physical_width , physical_height
+from common import physical_displays , logical_displays , nplaylists , fullscreen
+
+def setup_displays():
+    '''
+    Automatically setup, and configure, each *VlcDisplay*.
+
+    :return: list of *VlcDisplay* objects.
+    '''
+    players = []
+
+    n = n_displays()
+    j = min(n,len(physical_displays))
+    for i in range(j):
+        k = physical_displays[i]
+        playlist = nplaylists[logical_displays[k]]
+        k %= n
+        name = 'Display-'+str(k)
+        width = physical_width(k)
+        height = physical_height(k)
+        xoffset = x_offset(k)
+        yoffset = y_offset(k)
+        player = VlcDisplay(name,width,height,xoffset,yoffset,fullscreen)
+        players.append(player)
+        player.set_playlist(playlist)
+
+    return players
