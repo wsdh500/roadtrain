@@ -5,8 +5,8 @@ roadtrain
    :maxdepth: 4
 
    VlcDisplay
-   VlcGpioTarget
    VlcSource
+   VlcTarget
    common
    depth
    display

@@ -20,6 +20,12 @@ Contents:
 
 .. toctree::
    :maxdepth: 2
+   :caption: Configuration:
+
+   Configuration
+
+.. toctree::
+   :maxdepth: 2
    :caption: Code:
 
    code/modules
