@@ -246,3 +246,10 @@ You will need to reboot, or possibly just logout, for the change to take effect.
 
 
 *The Pi should now be ready for installation and execution of this codebase.*
+
+
+Project code
+^^^^^^^^^^^^
+
+Finally, the original code for the project is available on
+`GitHub <https://github.com/wsdh500/roadtrain>`_.
