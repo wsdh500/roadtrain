@@ -26,6 +26,12 @@ Contents:
 
 .. toctree::
    :maxdepth: 2
+   :caption: Running:
+
+   Running
+
+.. toctree::
+   :maxdepth: 2
    :caption: Code:
 
    code/modules
